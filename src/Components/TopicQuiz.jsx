@@ -12,7 +12,7 @@ export const TopicQuiz = () => {
   return (
     <div className="mt-10 mb-10 ">
       <div className="justify-self-center ml-96">
-        <h1 className="font-bold text-2xl ml-44 pl-12">Prepare By Topics</h1>
+        <h1 className="font-bold text-2xl ml-44 pl-12">Topics</h1>
       </div>
       <div className="grid grid-cols-2 w-11/12 p-10 m-auto gap-8 shadow-2xl">
         {userId ? (

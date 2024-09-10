@@ -100,7 +100,7 @@ export const Footer = () => {
                 style={{ marginRight: "2px" }}
               ></i>
               <span className="text-white text-xs xl:text-sm">
-                Yavatmal,Maharashtra
+                Kanchanpur,Nepal
               </span>
             </p>
             <p className="flex items-center my-1">
@@ -109,7 +109,7 @@ export const Footer = () => {
                 style={{ marginRight: "2px" }}
               ></i>
               <span className="text-white text-xs xl:text-sm">
-                sudhirchavhan100@gmail.com
+                khembhatt369@gmail.com
               </span>
             </p>
             <p className="flex items-center my-1">
@@ -118,14 +118,14 @@ export const Footer = () => {
                 style={{ marginRight: "2px" }}
               ></i>
               <span className="text-white text-xs xl:text-sm">
-                +91 7774850751
+                +977-9869905888
               </span>
             </p>
           </div>
         </div>
       </div>
       <p className="text-white text-center mt-4 pb-4">
-        MERN Quiz App Designed and Developed By Sudhir P Chavhan.
+        MERN Quiz App Designed and Developed By Team LEARNERS.
       </p>
     </div>
   );

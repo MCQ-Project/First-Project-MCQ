@@ -46,8 +46,8 @@ export const Admin = () => {
           </div>
           <div className=" ml-32 leading-normal">
             <p className="text-lg text-black-100 leading-loose">
-              A Full Stack Web Developer 🚀 from Nagpur, India, currently 💻 I'm
-              doing my Full Stack Development from Masai School. I am passionate
+              A Full Stack Web Developer 🚀 from Kanchanpur, Nepal, currently 💻 I'm
+              doing my Full Stack Development from Far Western University. I am passionate
               about technology and want to learn & explore new technologies. I
               love travelling and doing farming in free time.
             </p>

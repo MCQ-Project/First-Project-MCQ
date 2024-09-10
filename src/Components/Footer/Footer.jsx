@@ -100,7 +100,7 @@ export const Footer = () => {
                 style={{ marginRight: "2px" }}
               ></i>
               <span className="text-white text-xs xl:text-sm">
-                Yavatmal,Maharashtra
+               Mahendranagar,Kanchanpur
               </span>
             </p>
             <p className="flex items-center my-1">

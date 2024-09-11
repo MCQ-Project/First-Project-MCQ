@@ -12,7 +12,7 @@ export const TopicQuiz = () => {
   return (
     <div className="mt-10 mb-10 ">
       <div className="justify-self-center ml-96">
-        <h1 className="font-bold text-2xl ml-44 pl-12">Prepare By Topics</h1>
+        <h1 className="font-bold text-2xl ml-44 pl-12">Topics</h1>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-11/12 p-10 m-auto gap-8 shadow-2xl">
   {[
@@ -24,11 +24,18 @@ export const TopicQuiz = () => {
     { path: "/quiz/mongodb", title: "MongoDb", image: "./mongo.gif" }
   ].map(({ path, title, image }) => (
     <Link key={title} to={userId ? path : "/register"}>
+
       <div className="border-2 cursor-pointer topicdiv text-white font-sans text-4xl font-bold h-36 flex items-center rounded-2xl overflow-hidden transition-all duration-300 ease-in-out transform hover:bg-transparent hover:border-green-600 hover:shadow-lg">
         <div className="w-3/5 h-full bg-green-600 flex items-center justify-center transition-all duration-300 ease-in-out hover:bg-transparent hover:text-green-600">
           <h1 className="pt-12 pl-16">{title}</h1>
         </div>
         <img className="w-2/5 h-full object-cover rounded-2xl transition-all duration-300 ease-in-out hover:opacity-70" src={image} alt={title} />
+=======
+      <div className="border-2 cursor-pointer topicdiv text-white font-sans text-4xl font-bold h-36 flex items-center rounded-2xl overflow-hidden">
+        <div className="w-3/5 h-full bg-green-600 flex items-center justify-center">
+          <h1 className="pt-12 pl-16">{title}</h1>
+        </div>
+        <img className="w-2/5 h-full object-cover rounded-2xl" src={image} alt={title} />
       </div>
     </Link>
   ))}

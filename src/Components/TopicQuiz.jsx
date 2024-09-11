@@ -24,6 +24,13 @@ export const TopicQuiz = () => {
     { path: "/quiz/mongodb", title: "MongoDb", image: "./mongo.gif" }
   ].map(({ path, title, image }) => (
     <Link key={title} to={userId ? path : "/register"}>
+
+      <div className="border-2 cursor-pointer topicdiv text-white font-sans text-4xl font-bold h-36 flex items-center rounded-2xl overflow-hidden transition-all duration-300 ease-in-out transform hover:bg-transparent hover:border-green-600 hover:shadow-lg">
+        <div className="w-3/5 h-full bg-green-600 flex items-center justify-center transition-all duration-300 ease-in-out hover:bg-transparent hover:text-green-600">
+          <h1 className="pt-12 pl-16">{title}</h1>
+        </div>
+        <img className="w-2/5 h-full object-cover rounded-2xl transition-all duration-300 ease-in-out hover:opacity-70" src={image} alt={title} />
+=======
       <div className="border-2 cursor-pointer topicdiv text-white font-sans text-4xl font-bold h-36 flex items-center rounded-2xl overflow-hidden">
         <div className="w-3/5 h-full bg-green-600 flex items-center justify-center">
           <h1 className="pt-12 pl-16">{title}</h1>

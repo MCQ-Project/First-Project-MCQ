@@ -20,9 +20,9 @@ export const TopicQuiz = () => {
             {" "}
             <div className="border-2 cursor-pointer topicdiv text-white font-sans text-4xl font-bold  h-36 justify-items-center rounded-2xl pl-10 flex ">
               <div className="w-3/5 h-full bg-rgb(27,169,76)">
-                <h1 className="pt-12 pl-16 topicdivh1 ">HTML</h1>
+                <h1 className="pt-12 pl-16 topicdivh1 ">Physics</h1>
               </div>
-              <img className="w-2/5  rounded-2xl" src="/html-5.gif" alt="" />
+              <img className="w-2/5  rounded-2xl" src="/physics1.jpg" alt="" />
             </div>
           </Link>
         ) : (
@@ -30,9 +30,9 @@ export const TopicQuiz = () => {
             {" "}
             <div className="border-2 cursor-pointer topicdiv text-white font-sans text-4xl font-bold  h-36 justify-items-center rounded-2xl pl-10 flex ">
               <div className="w-3/5 h-full bg-rgb(27,169,76)">
-                <h1 className="pt-12 pl-16 topicdivh1 ">HTML</h1>
+                <h1 className="pt-12 pl-16 topicdivh1 ">Physics</h1>
               </div>
-              <img className="w-2/5  rounded-2xl" src="/html-5.gif" alt="" />
+              <img className="w-2/5  rounded-2xl" src="/physics1.jpg" alt="" />
             </div>
           </Link>
         )}
@@ -41,7 +41,7 @@ export const TopicQuiz = () => {
             {" "}
             <div className="border-2 cursor-pointer topicdiv text-white font-sans text-4xl font-bold  h-36 justify-items-center rounded-2xl pl-10 flex ">
               <div className="w-3/5 h-full bg-rgb(27,169,76)">
-                <h1 className="pt-12 pl-16 topicdivh1">CSS</h1>
+                <h1 className="pt-12 pl-16 topicdivh1">Chemistry</h1>
               </div>
               <img
                 className="w-2/5 mr-0  rounded-2xl"
@@ -55,11 +55,11 @@ export const TopicQuiz = () => {
             {" "}
             <div className="border-2 cursor-pointer topicdiv text-white font-sans text-4xl font-bold  h-36 justify-items-center rounded-2xl pl-10 flex ">
               <div className="w-3/5 h-full bg-rgb(27,169,76)">
-                <h1 className="pt-12 pl-16 topicdivh1">CSS</h1>
+                <h1 className="pt-12 pl-16 topicdivh1">Chemistry</h1>
               </div>
               <img
                 className="w-2/5 mr-0  rounded-2xl"
-                src="./css3.gif"
+                src="/chemistry.jpg"
                 alt=""
               />
             </div>
@@ -70,11 +70,11 @@ export const TopicQuiz = () => {
             {" "}
             <div className="border-2 cursor-pointer topicdiv text-white font-sans text-4xl font-bold  h-36 justify-items-center rounded-2xl pl-10 flex ">
               <div className="w-3/5  h-full bg-rgb(27,169,76)">
-                <h1 className="pt-12 pl-16 topicdivh1">JavaScript</h1>
+                <h1 className="pt-12 pl-16 topicdivh1">Mathmatics</h1>
               </div>
               <img
                 className="w-2/5 rounded-2xl "
-                src="./javascript.gif"
+                src="./math.jpeg"
                 alt=""
               />
             </div>
@@ -84,11 +84,11 @@ export const TopicQuiz = () => {
             {" "}
             <div className="border-2 cursor-pointer topicdiv text-white font-sans text-4xl font-bold  h-36 justify-items-center rounded-2xl pl-10 flex ">
               <div className="w-3/5  h-full bg-rgb(27,169,76)">
-                <h1 className="pt-12 pl-16 topicdivh1">JavaScript</h1>
+                <h1 className="pt-12 pl-16 topicdivh1">Mathmatics</h1>
               </div>
               <img
                 className="w-2/5 rounded-2xl "
-                src="./javascript.gif"
+                src="/math.jpeg"
                 alt=""
               />
             </div>
@@ -100,9 +100,9 @@ export const TopicQuiz = () => {
             {" "}
             <div className="border-2 cursor-pointer topicdiv text-white font-sans text-4xl font-bold  h-36 justify-items-center rounded-2xl pl-10 flex ">
               <div className="w-3/5 h-full bg-rgb(27,169,76)">
-                <h1 className="pt-12 pl-16 topicdivh1">React</h1>
+                <h1 className="pt-12 pl-16 topicdivh1">English</h1>
               </div>
-              <img className="w-2/5 rounded-2xl " src="./react.gif" alt="" />
+              <img className="w-2/5 rounded-2xl " src="./english 22.jpg" alt="" />
             </div>
           </Link>
         ) : (
@@ -110,9 +110,9 @@ export const TopicQuiz = () => {
             {" "}
             <div className="border-2 cursor-pointer topicdiv text-white font-sans text-4xl font-bold  h-36 justify-items-center rounded-2xl pl-10 flex ">
               <div className="w-3/5 h-full bg-rgb(27,169,76)">
-                <h1 className="pt-12 pl-16 topicdivh1">React</h1>
+                <h1 className="pt-12 pl-16 topicdivh1">English</h1>
               </div>
-              <img className="w-2/5 rounded-2xl " src="./react.gif" alt="" />
+              <img className="w-2/5 rounded-2xl " src="./english 22.jpg" alt="" />
             </div>
           </Link>
         )}

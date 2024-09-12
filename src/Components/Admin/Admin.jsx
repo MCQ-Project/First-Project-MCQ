@@ -51,7 +51,6 @@ export const Admin = () => {
     A Computer Engineering student from Far Western University, Nepal, I'm passionate about coding and technology. I enjoy learning and exploring new technologies, and in my free time, I love traveling and engaging in creative problem-solving. — Khem Bhatt
   </p>
 </div>
-
           <div className="flex mt-12 space-x-4 ml-32 ">
             <a
               href="#"

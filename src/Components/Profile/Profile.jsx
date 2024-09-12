@@ -14,7 +14,7 @@ export const Profile = () => {
         <strong className="text-teal-500 text-2xl pl-32 font-extrabold italic">
           Sweat more in practice, bleed less in war.
         </strong>{" "}
-        <br /> <p className="ml-96 pl-28 font-bold">– Spartan Warrior Credo</p>
+        <br /> <p className="ml-96 pl-28 font-bold">– khem bhatt</p>
       </h1>
       <div className="flex w-4/5 mb-56 ml-64 mt-16">
         <img src="./profile.gif" alt="prfile" className="w-1/2 h-64" />

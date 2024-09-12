@@ -46,23 +46,11 @@ export const Admin = () => {
               </h1>{" "}
             </h1>
           </div>
-<<<<<<< HEAD
-          <div className=" ml-32 leading-normal">
-            <p className="text-lg text-black-100 leading-loose">
-              A Full Stack Web Developer 🚀 from Kanchanpur, Nepal, currently 💻 I'm
-              doing my Full Stack Development from Far Western University. I am passionate
-              about technology and want to learn & explore new technologies. I
-              love travelling and doing farming in free time.
-            </p>
-          </div>
-=======
           <div className="ml-32 leading-normal">
   <p className="text-lg text-black-100 leading-loose">
     A Computer Engineering student from Far Western University, Nepal, I'm passionate about coding and technology. I enjoy learning and exploring new technologies, and in my free time, I love traveling and engaging in creative problem-solving. — Khem Bhatt
   </p>
 </div>
-
->>>>>>> c3e060b716637bc97d2c87d0d5e398306d969ff0
           <div className="flex mt-12 space-x-4 ml-32 ">
             <a
               href="#"

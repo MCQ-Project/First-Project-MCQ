@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { getAllUserDataFromBackend } from "../../Redux/action.js";
 import { QuizForm } from "./QuizForm.jsx";
 import { UserdetailForAdmin } from "./UserdetailForAdmin.jsx";
+import khem from "../Admin/khem.jpg"
 
 export const Admin = () => {
   const allUsers = useSelector((state) => state.mernQuize.Alluser);
@@ -23,13 +24,14 @@ export const Admin = () => {
     <div>
       <div className="md:w-11/12 mx-auto bg-gray-100/10 flex p-4 my-6 mt-24">
         <div className="w-7/12 ">
-          <div className="ml-32 ">
-            <img
-              className="h-[125px] w-[250px] rounded-full"
-              src="./admin.gif"
-              alt=""
-            />
-          </div>
+        <div className="ml-32">
+  <img
+    className="h-[325px] w-[250px] rounded-lg shadow-lg transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl"
+    src={khem}
+    alt="Khem Bhatt"
+  />
+</div>
+
           <div>
             <h1
               className="title text-4xl font-semibold flex text-black pb-6 mt-8 ml-32"
@@ -40,18 +42,15 @@ export const Admin = () => {
                 className="title text-4xl font-semibold  text-sky-500 pb-4 ml-2 mt-0"
                 style={{ fontFamily: "Quicksand" }}
               >
-                Sudhir P Chavhan 👋
+                Khem Bhatt👋
               </h1>{" "}
             </h1>
           </div>
-          <div className=" ml-32 leading-normal">
-            <p className="text-lg text-black-100 leading-loose">
-              A Full Stack Web Developer 🚀 from Nagpur, India, currently 💻 I'm
-              doing my Full Stack Development from Masai School. I am passionate
-              about technology and want to learn & explore new technologies. I
-              love travelling and doing farming in free time.
-            </p>
-          </div>
+          <div className="ml-32 leading-normal">
+  <p className="text-lg text-black-100 leading-loose">
+    A Computer Engineering student from Far Western University, Nepal, I'm passionate about coding and technology. I enjoy learning and exploring new technologies, and in my free time, I love traveling and engaging in creative problem-solving. — Khem Bhatt
+  </p>
+</div>
           <div className="flex mt-12 space-x-4 ml-32 ">
             <a
               href="#"
@@ -125,7 +124,7 @@ export const Admin = () => {
         </div>
         <div className="w-5/12 p-16 ml-24">
           <img
-            src="./sudhir.jpg"
+            src={khem}
             alt="admin"
             className="h-[300px] w-[300px] rounded-full "
           />

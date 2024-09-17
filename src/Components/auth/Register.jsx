@@ -12,10 +12,25 @@ export const Register = () => {
     password: "",
     reEnterPassword: "",
   });
+
   const navigate = useNavigate();
-  const register = () => {
+
+  // Input validation
+  const validateInputs = () => {
     const { name, email, password, reEnterPassword } = user;
-    if (name && email && password && password === reEnterPassword) {
+    if (!name || !email || !password || !reEnterPassword) {
+      toast("All fields are required", { type: "error" });
+      return false;
+    }
+    if (password !== reEnterPassword) {
+      toast("Passwords do not match", { type: "error" });
+      return false;
+    }
+    return true;
+  };
+
+  const register = () => {
+    if (validateInputs()) {
       axios
         .post("http://localhost:3756/auth/register", user)
         .then((res) => {
@@ -27,14 +42,11 @@ export const Register = () => {
           }, 3000);
         })
         .catch((err) => {
-          toast("Invalid Input", {
+          console.error("Registration error:", err); // Logs the actual error
+          toast("Registration Failed. Please try again", {
             type: "error",
           });
         });
-    } else {
-      toast("Invalid Input", {
-        type: "error",
-      });
     }
   };
 
@@ -56,30 +68,30 @@ export const Register = () => {
           value={user.name}
           placeholder="Your Name"
           onChange={handleChange}
-        ></input>
+        />
         <input
-          type="text"
+          type="email"
           name="email"
           value={user.email}
           placeholder="Your Email"
           onChange={handleChange}
-        ></input>
+        />
         <input
           type="password"
           name="password"
           value={user.password}
           placeholder="Your Password"
           onChange={handleChange}
-        ></input>
+        />
         <input
           type="password"
           name="reEnterPassword"
           value={user.reEnterPassword}
           placeholder="Re-enter Password"
           onChange={handleChange}
-        ></input>
+        />
         <button
-          className="p-2 pl-24 pr-24 clicabledivRegsiter bg-blue-500 h-10 rounded-md text-white  text-xl "
+          className="p-2 pl-24 pr-24 clicabledivRegsiter bg-blue-500 h-10 rounded-md text-white text-xl"
           onClick={register}
         >
           Register
@@ -87,13 +99,12 @@ export const Register = () => {
         <ToastContainer />
         <div>OR</div>
         <Link to="/login">
-          {" "}
-          <div className="p-2 pl-36 pr-28 clicablediv bg-blue-500 h-10 rounded-md text-white  text-xl ">
+          <div className="p-2 pl-36 pr-28 clicablediv bg-blue-500 h-10 rounded-md text-white text-xl">
             Login
-          </div>{" "}
+          </div>
         </Link>
       </div>
-      <button className="mb-8 w-1/2 ml-48 ">
+      <button className="mb-8 w-1/2 ml-48">
         <img src="./register.gif" alt="registergif" />
       </button>
     </div>

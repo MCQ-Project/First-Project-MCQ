@@ -55,7 +55,7 @@ export const Footer = () => {
       </h3>
       <div className="flex flex-col space-y-2">
         <a
-          href="https://www.instagram.com/chavhansudhir/?hl=en"
+          href="https://www.instagram.com/khemraj.bhatt.333?igsh=dm5uOGNlejZhdW96"
           className="flex items-center text-white text-xs xl:text-sm"
           target="_blank"
           rel="noopener noreferrer"
@@ -64,7 +64,7 @@ export const Footer = () => {
           Instagram
         </a>
         <a
-          href="https://www.linkedin.com/in/sudhirpc/"
+          href="https://www.linkedin.com/me?trk=p_mwlite_profile_self-secondary_nav"
           className="flex items-center text-white text-xs xl:text-sm"
           target="_blank"
           rel="noopener noreferrer"
@@ -73,7 +73,7 @@ export const Footer = () => {
           LinkedIn
         </a>
         <a
-          href="https://www.facebook.com/sudhir.chavhan.583"
+          href="https://www.facebook.com/khemraj.bhatt.333?mibextid=ZbWKwL"
           className="flex items-center text-white text-xs xl:text-sm"
           target="_blank"
           rel="noopener noreferrer"

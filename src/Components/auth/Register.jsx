@@ -32,7 +32,7 @@ export const Register = () => {
   const register = () => {
     if (validateInputs()) {
       axios
-        .post("https://mern-quiz-server-sudhir.onrender.com/register", user)
+        .post("http://localhost:3756/auth/register", user)
         .then((res) => {
           toast("Successfully Registered", {
             type: "success",

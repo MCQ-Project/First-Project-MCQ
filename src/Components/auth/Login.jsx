@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import "./Login.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   loginAdminId,
   loginAdminName,
@@ -13,7 +12,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export const Login = () => {
-  const userId = useSelector((state) => state.mernQuize.userId);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [user, setUser] = useState({
@@ -33,79 +31,102 @@ export const Login = () => {
     axios
       .post("http://localhost:3756/auth/login", user)
       .then((res) => {
-        if (res.data.user.email == "khembhatt369@gmail.com") {
+        if (res.data.user.email === "khembhatt369@gmail.com") {
           dispatch(loginAdminId(res.data.user._id));
           dispatch(loginAdminName(res.data.user.name));
           toast(`Welcome Admin ${res.data.user.name}`, {
             type: "success",
           });
-
           setTimeout(() => {
-            navigate("/profile");
+            navigate("/");
           }, 4000);
         } else {
           dispatch(loginUser(res.data.user._id));
           dispatch(loginUserName(res.data.user.name));
-          toast(`Successfully Login `, {
+          toast(`Successfully Logged In`, {
             type: "success",
           });
           setTimeout(() => {
-            navigate("/profile");
+            navigate("/");
           }, 3000);
         }
-
-        //         if(res.data.message=="login successfully"){
-        // alert("Login successfully")
-        //         }
-        // navigate('/')
       })
       .catch((err) => {
-        toast("Invalid Credientials", {
+        toast("Invalid Credentials", {
           type: "error",
         });
       });
   };
 
   return (
-    <div className=" flex w-4/5 justify-around m-auto mt-16 mb-16">
-      <div className="login mb-28 w-1/2 ml-48 ">
-        <h1 className="text-2xl font-semibold">Login</h1>
-        <input
-          type="text"
-          name="email"
-          value={user.email}
-          onChange={handleChange}
-          placeholder="Enter your Email"
-        ></input>
-        <input
-          type="password"
-          name="password"
-          value={user.password}
-          onChange={handleChange}
-          placeholder="Enter your Password"
-        ></input>
-        <div>
-          {" "}
-          <button
-            onClick={() => {
-              login();
-            }}
-            className="p-2 pl-28 pr-28 bg-blue-500 h-10 rounded-md text-white  text-xl "
-          >
-            Login
-          </button>
+    <div className="flex flex-col lg:flex-row min-h-screen">
+     
+      <div className="lg:w-1/2 flex justify-center items-center p-6">
+        <div className="sm:w-full sm:max-w-sm shadow-lg p-6 rounded-lg bg-white">
+          <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            Login to your account
+          </h2>
+
+          <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                Email address
+              </label>
+              <div className="mt-2">
+                <input
+                  id="email"
+                  name="email"
+                  type="text"
+                  required
+                  value={user.email}
+                  onChange={handleChange}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
+                  placeholder="Enter your Email"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                Password
+              </label>
+              <div className="mt-2">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  required
+                  value={user.password}
+                  onChange={handleChange}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
+                  placeholder="Enter your Password"
+                />
+              </div>
+            </div>
+
+            <div>
+              <button
+                type="button"
+                onClick={login}
+                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                Login
+              </button>
+            </div>
+          </form>
+
           <ToastContainer />
+
+          <p className="mt-10 text-center text-sm text-gray-500">
+            Not a member?{' '}
+            <Link to="/register" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+              Register
+            </Link>
+          </p>
         </div>
-        <div>OR</div>
-        <Link to="/register">
-          {" "}
-          <button className="p-2 pl-28 pr-24 bg-blue-500 h-10 rounded-md text-white  text-xl ">
-            Register
-          </button>{" "}
-        </Link>
       </div>
-      <div className="w-1/2 ml-24">
-        <img className="h-96 w-96" src="./login.gif" alt="logingif" />
+      <div className="lg:w-1/2 flex justify-center items-center p-6">
+        <img className="h-96 w-96 object-cover" src="./login.gif" alt="Login gif" />
       </div>
     </div>
   );

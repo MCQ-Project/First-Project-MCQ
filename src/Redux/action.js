@@ -110,7 +110,7 @@ const getAllUserDataFailure = (payload) => {
 export const getAllUserDataFromBackend = (payload) => (dispatch) => {
   dispatch(getAllUserDataRequest());
   axios
-    .get("https://mern-quiz-server-sudhir.onrender.com/getuser")
+    .get("http://localhost:3756/user/getuser")
     .then((res) => {
       dispatch(getAllUserDataSuccess(res.data));
     })
@@ -121,7 +121,7 @@ export const getAllUserDataFromBackend = (payload) => (dispatch) => {
 
 export const deleteUserByAdmin = (payload) => (dispatch) => {
   axios
-    .delete(`https://mern-quiz-server-sudhir.onrender.com/${payload}`)
+    .delete(`http://localhost:3756/${payload}`)
     .then((response) => {
       dispatch(getAllUserDataFromBackend());
     })
@@ -134,7 +134,7 @@ export const deleteUserByAdmin = (payload) => (dispatch) => {
 
 export const postQuizObj = (obj) => (dispatch) => {
   axios
-    .post("https://mern-quiz-server-sudhir.onrender.com/admin", obj)
+    .post("http://localhost:3756/admin", obj)
     .then((res) => {
      
     })
@@ -165,14 +165,14 @@ const fetchQuizFailure = (payload) => {
 };
 export const fetchQuizDataFrombackend = () => (dispatch) => {
   axios
-    .get("https://mern-quiz-server-sudhir.onrender.com/api/quiz")
+    .get("http://localhost:3756/quiz/display")
     .then((res) => dispatch(fetchQuizSuccess(res.data)))
     .catch((err) => console.log(err));
 };
 
 export const getQuiz = (params) => (dispatch) => {
   axios
-    .get(`https://mern-quiz-server-sudhir.onrender.com/quiz/${params.id}`)
+    .get(`http://localhost:3756/quiz/display/${params.id}`)
     .then((res) => {
     
       dispatch(fetchQuizSuccess(res.data));
@@ -216,7 +216,7 @@ export const postQuizResult = (obj) => (dispatch) => {
   const { quizId, userId, quizResult } = obj;
   dispatch(postUserResultRequest());
   axios
-    .post(`https://mern-quiz-server-sudhir.onrender.com/userResult/${userId}`, obj)
+    .post(`http://localhost:3756/quiz/display/${userId}`, obj)
     .then((res) => {
       dispatch(postUserResultSuccess(res.data));
     })

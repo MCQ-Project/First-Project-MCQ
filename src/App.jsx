@@ -13,6 +13,9 @@ import { Quizes } from "./Components/QuizNew/Quizes.jsx";
 import { Navbarnew } from "./Components/Navbar/Navbarnew.jsx";
 import { Resultshow } from "./Pages/Resultshow.jsx";
 import { ShowAllAnswers } from "./Pages/ShowAllAnswers.jsx";
+import License from "./Components/Admin/License.jsx";
+import Engineering from "./Components/Admin/Engineering.jsx";
+import { Quiz } from "./Components/QuizNew/Quiz.jsx";
 
 function App() {
   return (
@@ -26,13 +29,16 @@ function App() {
         <Route path="/CSS" element={<NewQuizPage />} />
         <Route path="/Javascript" element={<NewQuizPage />} />
         <Route path="/React" element={<NewQuizPage />} />
-        <Route path="/quiz/:id" element={<Quizes />} />
+        <Route path="/quiz" element={<Quiz />} />
         <Route path="/Mongodb" element={<NewQuizPage />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/addquiz" element={<QuizForm />} />
         <Route path="/profile" element={<ProfileMain />} />
         <Route path="/result" element={<Resultshow />} />
         <Route path="/showallanswer" element={<ShowAllAnswers />} />
+        <Route path="/license" element={<License/>} />
+        <Route path="/engineering" element={<Engineering/>} />
+        {/* license */}
       </Routes>
       <Footer />
     </div>

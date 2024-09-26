@@ -9,7 +9,7 @@ export const ShowAllAnswers = () => {
 
   return (
     <div>
-      <div className="flex w-11/12 ml-16 mt-12  mb-1">
+      <div className="flex w-11/12 ml-16 mt-36  mb-1">
         <div className=" w-6/12 ">
           <div className="text-center">
             <h1 className="text-xl font-medium font-serif text-red-600">

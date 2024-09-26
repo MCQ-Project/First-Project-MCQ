@@ -1,92 +1,92 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Logouthandleraction } from "../../Redux/action.js";
+import { Disclosure, Menu } from '@headlessui/react';
 import { ToastContainer, toast } from "react-toastify";
+import { FaSun, FaMoon } from 'react-icons/fa'; // Import icons for dark/light mode
 import "react-toastify/dist/ReactToastify.css";
 
+const navigation = [
+  { name: 'Home', href: '/' },
+  { name: 'Profile', href: '/profile' },
+  { name: 'Quizzes', href: '/quizzes' },
+  { name: 'Show Answers', href: '/showallanswer' },
+  // Add more links as needed
+];
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ');
+}
+
 export const Navbarnew = () => {
+  const [darkMode, setDarkMode] = useState(false);
   const userId = useSelector((state) => state.mernQuize.userId);
   const userName = useSelector((state) => state.mernQuize.userName);
-  const adminName = useSelector((state) => state.mernQuize.adminName);
   const navigate = useNavigate();
+  const location = useLocation(); // Get current location
   const dispatch = useDispatch();
+
   const logouthandler = () => {
-    if (userName !== null) {
+    if (userName) {
       dispatch(Logouthandleraction());
-      toast(`${userName} Successfully Logout `, {
-        type: "success",
-      });
+      toast(`${userName} Successfully Logged Out`, { type: "success" });
+      navigate("/");
     }
-    if (adminName == "Sudhir P Chavhan") {
-      toast(`Sudhir P Chavhan Successfully Logout `, {
-        type: "success",
-      });
-      dispatch(Logouthandleraction());
-    }
-    navigate("/");
   };
 
-  const profilenavigate = () => {
-    navigate("/profile");
-  };
   return (
-    <div className="w-11/12 h-24 m-auto flex bg-slate-50 mb-8 ">
-      <Link to="/" className="w-4/12 flex ">
-        <img
-          className="rounded-md"
-          src="/mcq logo 2.png"
-          alt=""
-        />
-        {/* <img src="./questionfront.gif" alt="" className="w-3/5 " /> */}
-      </Link>
-
-      <div className="w-2/5 ml-14 ">
-        {/* <img className="w-96 h-24" src="./logo.png" alt="" /> */}
-      </div>
-
-      <div className="w-3/12 flex justify-around py-4 mt-2">
-        {" "}
-        <div className="flex">
-          <div className=" pt-2">
-            {userName !== null || adminName !== null ? (
-              <div className="flex ">
-                <div
-                  className="font-medium cursor-pointer text-xl"
-                  onClick={profilenavigate}
+    <Disclosure as="nav" className={`fixed top-0 left-0 w-full z-50 transition-all ${darkMode ? 'bg-gradient-to-r from-[#3d36a2] to-[#4f47e6] text-white' : 'bg-white text-black'} shadow`}>
+      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+        <div className="relative flex h-16 items-center justify-between">
+          <Link to="/" className="flex items-center">
+            <img alt="Your Company" src="/mcq logo 2.png" className="h-8 w-auto" />
+          </Link>
+          <div className="hidden sm:ml-6 sm:block">
+            <div className="flex space-x-4">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={classNames(
+                    location.pathname === item.href
+                      ? (darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-black')
+                      : (darkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-800 hover:bg-gray-200'),
+                    'rounded-md px-3 py-2 text-sm font-medium'
+                  )}
                 >
-                  PROFILE
-                </div>{" "}
-                <div
-                  onClick={() => {
-                    logouthandler();
-                  }}
-                  className="ml-4 font-medium cursor-pointer text-xl"
-                >
-                  LOGOUT
-                </div>
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+          <div className="flex items-center">
+            <button onClick={() => setDarkMode(!darkMode)} className="text-gray-400 hover:text-black dark:hover:text-white flex items-center">
+              {darkMode ? <FaSun className="w-5 h-5" /> : <FaMoon className="w-5 h-5" />}
+            </button>
+            {userId ? (
+              <div className="relative ml-3">
+                <Menu as="div" className="relative">
+                  <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <span className="text-white">{userName}</span>
+                  </Menu.Button>
+                  <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none">
+                    <Menu.Item>
+                      <Link to="/profile" className="block px-4 py-2 text-sm text-gray-700">Your Profile</Link>
+                    </Menu.Item>
+                    <Menu.Item>
+                      <button onClick={logouthandler} className="block px-4 py-2 text-sm text-gray-700">Sign out</button>
+                    </Menu.Item>
+                  </Menu.Items>
+                </Menu>
               </div>
             ) : (
-              <Link to="/register" className="font-medium mt-16 ml-24 text-2xl">
-                SIGN IN
-              </Link>
+              <Link to="/login" className="text-gray-800 hover:text-gray-600">Login</Link>
             )}
           </div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-8 w-10 mt-2"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
-              clipRule="evenodd"
-            />
-          </svg>
         </div>
-        <ToastContainer />
       </div>
-    </div>
+      <ToastContainer />
+    </Disclosure>
   );
 };

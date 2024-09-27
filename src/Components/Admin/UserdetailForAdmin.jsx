@@ -7,16 +7,16 @@ import "react-toastify/dist/ReactToastify.css";
 export const UserdetailForAdmin = ({ data }) => {
   const dispatch = useDispatch();
 
-  const deleteUser = (userId) => {
+  const deleteUser = async (userId) => {
     if (userId) {
-      dispatch(deleteUserByAdmin(userId));
-      toast("Successfully Deleted the User", {
-        type: "success",
-      });
+      try {
+        await dispatch(deleteUserByAdmin(userId)); // Make sure this is async if you handle it that way
+        toast.success("Successfully Deleted the User");
+      } catch (error) {
+        toast.error("Error deleting user. Please try again.");
+      }
     } else {
-      toast("You can't delete the User", {
-        type: "error",
-      });
+      toast.error("You can't delete the User");
     }
   };
 

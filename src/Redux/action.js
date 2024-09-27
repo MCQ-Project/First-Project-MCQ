@@ -121,7 +121,7 @@ export const getAllUserDataFromBackend = (payload) => (dispatch) => {
 
 export const deleteUserByAdmin = (payload) => (dispatch) => {
   axios
-    .delete(`http://localhost:3756/${payload}`)
+    .delete(`http://localhost:3756/user/delete/${payload}`)
     .then((response) => {
       dispatch(getAllUserDataFromBackend());
     })

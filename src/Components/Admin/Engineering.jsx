@@ -1,55 +1,129 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const License = () => {
-  const [quizData, setQuizData] = useState([]);
+const EntranceTest = () => {
+  const [quizzes, setQuizzes] = useState([]);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [selectedAnswers, setSelectedAnswers] = useState({});
+  const [showResults, setShowResults] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchQuizData = async () => {
+    const fetchQuizzes = async () => {
       try {
         const response = await axios.get("http://localhost:3756/quiz/display");
-        console.log(response.data); // Debugging line
-        setQuizData(response.data.questionArray || []); // Use fallback
-      } catch (error) {
-        setError("Error fetching quiz data");
-        console.error("Error fetching quiz data:", error);
+        setQuizzes(response.data);
+      } catch (err) {
+        console.error("Error fetching quizzes:", err);
+        setError("Failed to fetch quizzes. Please try again later.");
       } finally {
         setLoading(false);
       }
     };
 
-    fetchQuizData();
+    fetchQuizzes();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+  const handleAnswerSelect = (answer) => {
+    if (!selectedAnswers[currentQuestionIndex]) {
+      setSelectedAnswers({
+        ...selectedAnswers,
+        [currentQuestionIndex]: answer,
+      });
+    }
+  };
+
+  const handleNextQuestion = () => {
+    if (currentQuestionIndex < quizzes.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    } else {
+      setShowResults(true);
+    }
+  };
+
+  const handleFinishQuiz = () => {
+    setShowResults(true);
+  };
+
+  const handleDashboardRedirect = () => {
+    navigate("/dashboard");
+  };
+
+  if (loading) {
+    return <div>Loading quizzes...</div>;
+  }
+
+  if (error) {
+    return <div className="text-red-500">{error}</div>;
+  }
+
+  const currentQuiz = quizzes[currentQuestionIndex];
+  const correctAnswer = currentQuiz.answers.find(ans => ans.correct)?.text;
 
   return (
-    <div className="w-10/12 m-auto mt-20 text-black"> {/* Adjusted top margin to mt-20 */}
-      <h1 className="text-2xl font-bold mb-5">License Quiz Data</h1>
-      {quizData.length === 0 ? (
-        <div>No quizzes available</div>
-      ) : (
-        quizData.map((quiz, index) => (
-          <div key={index} className="bg-gray-100 p-4 rounded-lg mb-4">
-            <h2 className="font-semibold text-lg">{quiz.title}</h2>
-            <p>{quiz.questions}</p>
-            <h3 className="font-semibold mt-2">Options:</h3>
-            <ul className="list-disc pl-5">
-              {quiz.options.map((option, idx) => (
-                <li key={idx} className={option.isCorrect ? "text-green-600" : "text-red-600"}>
-                  {option.option} {option.isCorrect && "(Correct)"}
+    <div className="entrance-test p-6 bg-white shadow-lg rounded mt-36">
+      {showResults ? (
+        <div>
+          <h2 className="text-2xl font-semibold">Results</h2>
+          <ul className="mt-4">
+            {quizzes.map((quiz, index) => {
+              const isCorrect = selectedAnswers[index] === quiz.answers.find(ans => ans.correct)?.text;
+              return (
+                <li key={index} className={`flex justify-between items-center p-2 ${isCorrect ? 'bg-green-100' : 'bg-red-100'}`}>
+                  <span>{index + 1}. {quiz.question}</span>
+                  <span>{isCorrect ? 'Correct' : 'Incorrect'}</span>
                 </li>
-              ))}
-            </ul>
-            <p className="mt-2"><strong>Correct Answer:</strong> {quiz.correctAnswer}</p>
+              );
+            })}
+          </ul>
+          <button onClick={handleDashboardRedirect} className="mt-4 bg-blue-500 text-white p-2 rounded">Go to Dashboard</button>
+        </div>
+      ) : (
+        <div>
+          <h2 className="text-2xl font-semibold">{currentQuestionIndex + 1}. {currentQuiz.question}</h2>
+          <div className="answers mt-4">
+            {currentQuiz.answers.map((answer, index) => {
+              const isSelected = selectedAnswers[currentQuestionIndex] === answer.text;
+              const isCorrect = answer.correct;
+              const buttonClass = isSelected 
+                ? (isCorrect ? 'bg-green-300' : 'bg-red-300') 
+                : 'bg-gray-200';
+              return (
+                <button
+                  key={index}
+                  onClick={() => handleAnswerSelect(answer.text)}
+                  className={`w-full text-left p-2 rounded mt-2 ${buttonClass}`}
+                  disabled={!!selectedAnswers[currentQuestionIndex]} // Disable if already answered
+                >
+                  {answer.text}
+                </button>
+              );
+            })}
+            {selectedAnswers[currentQuestionIndex] && (
+              <div className="mt-2">
+                <span className="font-bold">Correct answer: </span>
+                <span>{correctAnswer}</span>
+                <div className="mt-2">
+                  <span className="font-bold">Explanation: </span>
+                  <span>{currentQuiz.explanation}</span>
+                </div>
+              </div>
+            )}
           </div>
-        ))
+          <div className="flex justify-between mt-4">
+            {currentQuestionIndex === quizzes.length - 1 ? (
+              <button onClick={handleFinishQuiz} className="bg-blue-500 text-white p-2 rounded">Finish Quiz</button>
+            ) : (
+              <button onClick={handleNextQuestion} className="bg-blue-500 text-white p-2 rounded">Next</button>
+            )}
+          </div>
+        </div>
       )}
     </div>
   );
 };
 
-export default License;
+export default EntranceTest;

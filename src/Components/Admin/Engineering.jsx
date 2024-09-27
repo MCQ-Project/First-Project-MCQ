@@ -27,7 +27,7 @@ const License = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="w-10/12 m-auto mt-10 text-black mt-36">
+    <div className="w-10/12 m-auto mt-20 text-black"> {/* Adjusted top margin to mt-20 */}
       <h1 className="text-2xl font-bold mb-5">License Quiz Data</h1>
       {quizData.length === 0 ? (
         <div>No quizzes available</div>
@@ -53,4 +53,3 @@ const License = () => {
 };
 
 export default License;
- 

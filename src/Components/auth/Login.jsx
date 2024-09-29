@@ -29,14 +29,20 @@ export const Login = () => {
 
   const login = () => {
     axios
-      .post("http://localhost:3756/auth/login", user)
+      .post("http://localhost:8081/api/user/login", user)
       .then((res) => {
+        console.log(res);
         if (res.data.user.email === "khembhatt369@gmail.com") {
           dispatch(loginAdminId(res.data.user._id));
           dispatch(loginAdminName(res.data.user.name));
           toast(`Welcome Admin ${res.data.user.name}`, {
             type: "success",
           });
+          localStorage.setItem('token',res.data.token)
+          localStorage.setItem('userId',res.data.user._id)
+          localStorage.setItem('userName',res.data.user.fullname)
+          localStorage.setItem('userEmail',res.data.user.email)
+          localStorage.setItem('isAuth',true)
           setTimeout(() => {
             navigate("/");
           }, 4000);
@@ -46,6 +52,11 @@ export const Login = () => {
           toast(`Successfully Logged In`, {
             type: "success",
           });
+          localStorage.setItem('token',res.data.token)
+          localStorage.setItem('userId',res.data.user._id)
+          localStorage.setItem('userName',res.data.user.fullname)
+          localStorage.setItem('userEmail',res.data.user.email)
+          localStorage.setItem('isAuth',true)
           setTimeout(() => {
             navigate("/");
           }, 3000);
@@ -131,3 +142,5 @@ export const Login = () => {
     </div>
   );
 };
+
+export default Login;

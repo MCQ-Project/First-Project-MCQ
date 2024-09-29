@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Logouthandleraction } from "../../Redux/action.js";
-import { Disclosure, Menu } from '@headlessui/react';
+import { Disclosure } from '@headlessui/react';
 import { ToastContainer, toast } from "react-toastify";
-import { FaSun, FaMoon } from 'react-icons/fa'; // Import icons for dark/light mode
 import "react-toastify/dist/ReactToastify.css";
 
 const navigation = [
@@ -21,26 +20,36 @@ function classNames(...classes) {
 
 export const Navbarnew = () => {
   const [darkMode, setDarkMode] = useState(false);
-  const userId = useSelector((state) => state.mernQuize.userId);
-  const userName = useSelector((state) => state.mernQuize.userName);
+  const userId = useSelector((state) => state.mernQuize.userId) || localStorage.getItem("userId");
+  const userName = useSelector((state) => state.mernQuize.userName) || localStorage.getItem("userName");
   const navigate = useNavigate();
-  const location = useLocation(); // Get current location
+  const location = useLocation();
   const dispatch = useDispatch();
+
+  // On component mount, check localStorage for user details
+  useEffect(() => {
+    if (localStorage.getItem("userId")) {
+      // If a user is logged in, persist the state
+    }
+  }, []);
 
   const logouthandler = () => {
     if (userName) {
       dispatch(Logouthandleraction());
+      localStorage.removeItem("userId");
+      localStorage.removeItem("userName");
+      localStorage.removeItem("token");
       toast(`${userName} Successfully Logged Out`, { type: "success" });
       navigate("/");
     }
   };
 
   return (
-    <Disclosure as="nav" className={`fixed top-0 left-0 w-full z-50 transition-all ${darkMode ? 'bg-gradient-to-r from-[#3d36a2] to-[#4f47e6] text-white' : 'bg-white text-black'} shadow`}>
+    <Disclosure as="nav" className={`fixed top-0 left-0 w-full z-50 transition-all ${darkMode ? 'bg-gradient-to-r from-blue-800 to-blue-600 text-white' : 'bg-white text-black'} shadow`}>
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <Link to="/" className="flex items-center">
-            <img alt="Your Company" src="/mcq logo 2.png" className="h-8 w-auto" />
+            <img alt="Your Company" src="/mcq-logo-2.png" className="h-8 w-auto" />
           </Link>
           <div className="hidden sm:ml-6 sm:block">
             <div className="flex space-x-4">
@@ -61,24 +70,13 @@ export const Navbarnew = () => {
             </div>
           </div>
           <div className="flex items-center">
-            <button onClick={() => setDarkMode(!darkMode)} className="text-gray-400 hover:text-black dark:hover:text-white flex items-center">
-              {darkMode ? <FaSun className="w-5 h-5" /> : <FaMoon className="w-5 h-5" />}
+            <button onClick={() => setDarkMode(!darkMode)} className="text-gray-400 hover:text-black flex items-center">
+              {darkMode ? "🌞" : "🌙"}
             </button>
             {userId ? (
-              <div className="relative ml-3">
-                <Menu as="div" className="relative">
-                  <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                    <span className="text-white">{userName}</span>
-                  </Menu.Button>
-                  <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none">
-                    <Menu.Item>
-                      <Link to="/profile" className="block px-4 py-2 text-sm text-gray-700">Your Profile</Link>
-                    </Menu.Item>
-                    <Menu.Item>
-                      <button onClick={logouthandler} className="block px-4 py-2 text-sm text-gray-700">Sign out</button>
-                    </Menu.Item>
-                  </Menu.Items>
-                </Menu>
+              <div className="ml-4 flex items-center space-x-4">
+                <span className="text-gray-800">{userName}</span>
+                <button onClick={logouthandler} className="text-gray-800 hover:text-gray-600">Logout</button>
               </div>
             ) : (
               <Link to="/login" className="text-gray-800 hover:text-gray-600">Login</Link>

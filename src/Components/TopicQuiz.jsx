@@ -11,10 +11,10 @@ export const TopicQuiz = () => {
 
   // Optional: Redirect to registration if no userId
   useEffect(() => {
-    if (!userId) {
-      // toast.warning("Please register before accessing quizzes");
-      navigate("/register");
-    }
+    // if (!userId) {
+    //   // toast.warning("Please register before accessing quizzes");
+    //   navigate("/register");
+    // }
   }, [userId, navigate]);
 
   return (

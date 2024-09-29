@@ -6,9 +6,10 @@ import "react-toastify/dist/ReactToastify.css";
 
 export const Register = () => {
   const [user, setUser] = useState({
-    name: "",
+    fullname: "",
     email: "",
     password: "",
+    registrationNumber: "",
     reEnterPassword: "",
   });
 
@@ -19,8 +20,8 @@ export const Register = () => {
 
   // Input validation
   const validateInputs = () => {
-    const { name, email, password, reEnterPassword } = user;
-    if (!name || !email || !password || !reEnterPassword) {
+    const { fullname, email, password, registrationNumber, reEnterPassword } = user;
+    if (!fullname || !email || !password || !registrationNumber || !reEnterPassword) {
       toast("All fields are required", { type: "error" });
       return false;
     }
@@ -34,7 +35,12 @@ export const Register = () => {
   const register = () => {
     if (validateInputs()) {
       axios
-        .post("http://localhost:3756/auth/register", user)
+        .post("http://localhost:8081/api/user/signup", {
+          fullname: user.fullname,
+          email: user.email,
+          password: user.password,
+          registrationNumber: user.registrationNumber,
+        })
         .then((res) => {
           toast("Successfully Registered", {
             type: "success",
@@ -71,19 +77,19 @@ export const Register = () => {
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm p-4 bg-white shadow-md rounded-lg">
         <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
           <div>
-            <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
-              Name
+            <label htmlFor="fullname" className="block text-sm font-medium leading-6 text-gray-900">
+              Full Name
             </label>
             <div className="mt-2">
               <input
-                id="name"
-                name="name"
+                id="fullname"
+                name="fullname"
                 type="text"
                 required
-                value={user.name}
+                value={user.fullname}
                 onChange={handleChange}
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
-                placeholder="Your Name"
+                placeholder="Your Full Name"
               />
             </div>
           </div>
@@ -102,6 +108,24 @@ export const Register = () => {
                 onChange={handleChange}
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
                 placeholder="Your Email"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label htmlFor="registrationNumber" className="block text-sm font-medium leading-6 text-gray-900">
+              Registration Number
+            </label>
+            <div className="mt-2">
+              <input
+                id="registrationNumber"
+                name="registrationNumber"
+                type="text"
+                required
+                value={user.registrationNumber}
+                onChange={handleChange}
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
+                placeholder="Your Registration Number"
               />
             </div>
           </div>
